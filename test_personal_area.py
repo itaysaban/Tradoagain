@@ -16,52 +16,55 @@ class Testcase(unittest.TestCase):
         go_to_pa = WebDriverWait(self.driver, 10).until((EC.element_to_be_clickable((By.XPATH, "//*[@id='root']/div/div[2]/header/div/div/div[1]/a"))))
         go_to_pa.click()
 
-    def tearDown(self):
-        self.driver.close()
 
     def test_delivery_details(self):
         """
         a test for the delivery details of the user
         :return:
         """
-
+        name = "Moshe"
+        last_name = "levi"
         edit = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div/div[3]/form/div[4]')))
         edit.click()
         time.sleep(2)
 
         first_name_element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div/div[3]/form/div[1]/div[1]/span/input')))
         first_name_element.click()
-        first_name_element.send_keys("Moshe")
+        first_name_element.clear()
+        first_name_element.send_keys(name)
 
         time.sleep(2)
 
         last_name_element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div/div[3]/form/div[1]/div[2]/span/input')))
         last_name_element.click()
-        last_name_element.send_keys("Levi")
+        last_name_element.clear()
+        last_name_element.send_keys(last_name)
 
         email_element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div/div[3]/form/div[1]/div[4]/span/input')))
         email_element.click()
+        email_element.clear()
         email_element.send_keys("moshe123@gmail.com")
         time.sleep(2)
 
         city_and_street = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div/div[3]/form/div[2]/div/div[1]/div[1]/input')))
         city_and_street.click()
+        city_and_street.clear()
         city_and_street.send_keys("city/st")
         time.sleep(2)
 
         street_num = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div/div[3]/form/div[2]/div/div[1]/div[2]/span/input')))
         street_num.click()
+        street_num.clear()
         street_num.send_keys("8")
         time.sleep(2)
 
-        zip_code = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div/div[3]/form/div[2]/div/div[1]/div[2]/span/input')))
+        zip_code = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div/div[3]/form/div[2]/div/div[1]/div[3]/span/input')))
         zip_code.click()
         zip_code.send_keys("81234132")
-        time.sleep(2)
-
-        save_details_btn = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div/div[3]/form/input')))
+        save_details_btn = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'form_editModeSubmitBtn')))
         save_details_btn.click()
-
+        user_name = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div[2]/header/div/div/div[1]/a'))).text
+        assert user_name == f'שלום {name} {last_name}'
     def test_my_wallet(self):
         """
         testing withdrawal from the E-Wallet
@@ -70,7 +73,11 @@ class Testcase(unittest.TestCase):
 
         withdraw_btn = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div/div[2]/div[1]/section/button')))
         withdraw_btn.click()
-        time.sleep(2)
+        try:
+            WebDriverWait(self.driver, 10).until_not(EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div/div[2]/div[1]/section/button')))
+            assert True
+        except TimeoutException:
+            assert False
 
     def test_contact_us_navigation(self):
 
@@ -96,7 +103,7 @@ class Testcase(unittest.TestCase):
 
             # Navigate back to the main page after each click
             self.driver.back()
-
+        assert True
 
 
 

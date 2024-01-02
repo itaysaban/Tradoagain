@@ -1,6 +1,0 @@
-login code: 57654
-Element input_0 is displayed: True
-Element input_0 is enabled: True
-Clicked on element: //*[@id="root"]/div/div[2]/div[2]/div/div/div/div/div[1]/div[3]/a[1]/div/div[2]/div[2]/div[2]/div
-Clicked on element: //*[@id="root"]/div/div[2]/div[2]/div/div/div/div/div[1]/div[3]/a[2]/div/div[2]/div[2]/div[3]
-Clicked on element: //*[@id="root"]/div/div[2]/div[2]/div/div/div/div/div[1]/div[3]/a[3]/div/div[2]/div[2]/div[2]/div

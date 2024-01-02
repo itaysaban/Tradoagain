@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 def driver_set_up():
     chrome_options = ChromeOptions()
-    chrome_options.add_experimental_option('detach', True)
+    # chrome_options.add_experimental_option('detach', True)
     chrome_options.add_argument('--ignore-ssl-errors=yes')
     chrome_options.add_argument('--ignore-certificate-errors')
     chrome_options.add_argument('disable_extensions')

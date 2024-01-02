@@ -1,3 +1,0 @@
-login code: 55130
-Element input_0 is displayed: True
-Element input_0 is enabled: True
