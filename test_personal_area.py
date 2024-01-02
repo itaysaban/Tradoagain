@@ -1,6 +1,6 @@
 import time
 import unittest
-from test_log_in import log_in
+from log_in import log_in
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait

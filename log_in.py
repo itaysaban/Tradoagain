@@ -33,23 +33,13 @@ def log_in(driver):
     client = mongoScrape.create_mongo_connection(user_name, encoded_password, db_name)
     db = mongoScrape.create_mongo_db(client, db_name)
     code = mongoScrape.get_loginCode(db, '97200123456')
-    print(f'login code: {code}')
 
     # Wait for the modal to be visible
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, 'modal_modal')))
 
     # Interact with each input element
 
-    input_class = 'input_0'
-    input_element = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="root"]/div/div[4]/div/div/div/div/form/div[1]/div[1]/span/input')))
-    # Debugging: Check if element is visible and enabled
-    print(f"Element {input_class} is displayed: {input_element.is_displayed()}")
-    print(f"Element {input_class} is enabled: {input_element.is_enabled()}")
-    input_element.send_keys(code)
-
-
+    input_element = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="root"]/div/div[4]/div/div/div/div/form/div[1]/div[1]/span/input'))).send_keys(code)
     submit_btn2 = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'form_submitBtn'))).click()
-    return  driver
 
 
-# log_in()

@@ -17,8 +17,7 @@ class Testcase(unittest.TestCase):
         self.driver = driver_set_up()
         self.driver.get('http://qa.trado.ai/')
 
-    def tearDown(self):
-        self.driver.close()
+
 
     def test_sign_in(self):
         #locate and click on register login
@@ -55,16 +54,11 @@ class Testcase(unittest.TestCase):
         input_element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="root"]/div/div[4]/div/div/div/div/form/div[1]/div[1]/span/input'))).send_keys(code)
         time.sleep(1)
         submit_btn2 = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, 'form_submitBtn'))).click()
+        assert True
 
 
 
 
-    def modify_phone_number(self, phone):
-        # Modify the phone number by changing one digit
-        # You can customize this part based on your requirements
-        modified_number = list(phone)
-        # Change the last digit, for example
-        modified_number[-1] = str((int(modified_number[-1]) + 1) % 10)
-        return ''.join(modified_number)
+
 
 
