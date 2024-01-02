@@ -27,6 +27,7 @@ class Testcase(unittest.TestCase):
 
         go_right = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/div[2]/div[2]/div/div/div/div/div[1]/div[1]/div/div[2]/div[1]')))
         go_right.click()
+        time.sleep(2)
 
     def test2_items_in_importing(self):
 
